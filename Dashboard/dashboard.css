@@ -1,0 +1,145 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Dashboard container layout */
+.dashboard-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+/* Sidebar styling */
+.sidebar {
+    width: 240px;
+    background-color: #2c3e50;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+.sidebar-button {
+    background-color:#34495e;
+    color: white;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    }
+.sidebar-button:hover {
+        background-color:#b4d0ed;
+        }
+/* Logo styling */
+.logo h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 1.5em;
+    text-align: center;
+    color: #ecf0f1;
+}
+
+/* Navigation menu and button styling */
+.nav-menu {
+    margin-top: 50px;
+}
+
+.nav-btn {
+    width: 100%;
+    background-color: #34495e;
+    color: white;
+    padding: 15px 20px;
+    border: none; /* Ensure no border */
+    outline: none; /* Remove any default button outline */
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-align: left;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Hover effect for navigation buttons */
+.nav-btn:hover {
+    background-color: #1abc9c;
+    transform: translateX(5px); /* Slide effect */
+}
+
+/* Active button styling */
+.nav-btn.active {
+    background-color: #1abc9c;
+    transform: translateX(5px); /* Maintain slide effect when active */
+}
+
+/* Main content area styling */
+.main-content {
+    flex: 1;
+    background-color: white;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* Sections visibility */
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
+}
+
+/* Overview page layout */
+.overview-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* Cards within the overview page */
+.overview-card {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Card header styling */
+.overview-card h3 {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+/* Chart canvas styling */
+canvas {
+    max-width: 100%;
+    max-height: 200px;
+}
+
+/* Leaderboard list styling */
+.overview-leaderboard ul {
+    list-style: none;
+    padding-left: 0;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.overview-leaderboard ul li {
+    background-color: #f9f9f9;
+    margin-bottom: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}

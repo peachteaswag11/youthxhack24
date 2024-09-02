@@ -9,7 +9,7 @@ const foodSourcesData = {
 };
 
 const beneficiariesData = {
-    labels: ['Beneficiary Group 1', 'Beneficiary Group 2', 'Beneficiary Group 3'],
+    labels: ['Group 1', 'Group 2', 'Group 3'],
     datasets: [{
         label: 'Items Received',
         data: [100, 150, 200],

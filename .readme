@@ -1,0 +1,35 @@
+youthxhaziqrobbedformacs
+├── config/
+│   ├── db.js             # Database connection configuration
+│   ├── auth.js           # Authentication-related utilities (hashing, JWT)
+├── models/
+│   ├── User.js           # User model
+│   ├── FoodProvider.js   # Food provider model
+│   ├── Request.js        # Request model
+│   ├── XPRecord.js       # XP record model
+├── routes/
+│   ├── auth.js           # Routes for user registration and login
+│   ├── profile.js        # Routes for user profile management
+│   ├── requests.js       # Routes for creating and managing food requests
+│   ├── matching.js       # Routes for the matching algorithm
+├── services/
+│   ├── matchingService.js # Logic for matching food requests with providers
+├── controllers/
+│   ├── authController.js  # Controller for authentication
+│   ├── profileController.js # Controller for profile management
+│   ├── requestController.js # Controller for handling requests
+│   ├── matchingController.js # Controller for matching logic
+├── middleware/
+│   ├── authMiddleware.js  # Middleware for authentication
+├── server.js              # Main server file
+├── .env                   # Environment variables
+├── package.json           # Project dependencies and scripts
+└── README.md              # Project documentation
+
+-npm install dependencies:
+ express
+ body-parser
+ sequelize
+ mysql2
+ jsonwebtoken
+ bcryptjs

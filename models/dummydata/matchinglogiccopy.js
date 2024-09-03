@@ -18,7 +18,7 @@ connection.connect((err) => {
   console.log('Connected to database');
 
   // Query the Requestor table for requestor ID 41
-  connection.query('SELECT * FROM Requestor_Table WHERE id = ?', [41], (err, requestorRows) => {
+  connection.query('SELECT * FROM Requestor_Table WHERE id = ?', [101], (err, requestorRows) => {
     if (err) {
       console.error('Error querying Requestor table:', err);
       connection.end(); // Ensure connection is closed on error
@@ -26,7 +26,7 @@ connection.connect((err) => {
     }
 
     if (requestorRows.length === 0) {
-      console.error('Requestor ID 41 not found');
+      console.error('Requestor ID 101 not found');
       connection.end();
       return;
     }
@@ -35,7 +35,7 @@ connection.connect((err) => {
     console.log(`Requestor 41 Data: ${JSON.stringify(requestorRow)}`);
 
     // Query the Giver table for giver ID 47
-    connection.query('SELECT * FROM Giver_Table WHERE id = ?', [47], (err, giverRows) => {
+    connection.query('SELECT * FROM Giver_Table WHERE id = ?', [107], (err, giverRows) => {
       if (err) {
         console.error('Error querying Giver table:', err);
         connection.end(); // Ensure connection is closed on error
@@ -43,13 +43,13 @@ connection.connect((err) => {
       }
 
       if (giverRows.length === 0) {
-        console.error('Giver ID 47 not found');
+        console.error('Giver ID 107 not found');
         connection.end();
         return;
       }
 
       const giverRow = giverRows[0];
-      console.log(`Giver 47 Data: ${JSON.stringify(giverRow)}`);
+      console.log(`Giver 107 Data: ${JSON.stringify(giverRow)}`);
 
       // Match the attributes and location district
       const isMatch = (
@@ -69,29 +69,18 @@ connection.connect((err) => {
 
       if (isMatch) {
         console.log('Match Found!');
-        console.log(`Requestor ID: ${requestorRow.id}`);
-        console.log(`Giver ID: ${giverRow.id}`);
 
         // Display details from the giver that matched
-        const requestDate = new Date(requestorRow.timestamp).toISOString().split('T')[0];
-        const giverExpiryDate = new Date(giverRow.expiry).toISOString().split('T')[0];
+        const matchedAttributes = Object.keys(requestorRow).filter(key => key !== 'id' && key !== 'Request_Date' && key !== 'timestamp' && key !== 'Location_district' && requestorRow[key] === giverRow[key]);
 
-        console.log(`Giver Details:`);
-        console.log(`Date: ${giverExpiryDate}`);
-        console.log(`Time: ${giverRow.expiry}`);
+        console.log(`Giver ID: ${giverRow.id}`);
         console.log(`Location District: ${giverRow.Location_district}`);
-        console.log(`Food Attributes:`);
-        console.log(`Gluten Free: ${giverRow.Gluten_Free}`);
-        console.log(`Lactose Free: ${giverRow.Lactose_Free}`);
-        console.log(`Low Sodium: ${giverRow.Low_Sodium}`);
-        console.log(`Diabetic Friendly: ${giverRow.Diabetic_friendly}`);
-        console.log(`Nut Free: ${giverRow.Nut_Free}`);
-        console.log(`Soy Free: ${giverRow.Soy_Free}`);
-        console.log(`Halal: ${giverRow.Halal}`);
-        console.log(`Vegan: ${giverRow.Vegan}`);
-        console.log(`Vegetarian: ${giverRow.Vegetarian}`);
-        console.log(`Seafood: ${giverRow.Seafood}`);
-        console.log(`Beef Free: ${giverRow.Beef_Free}`);
+        console.log(`Food Description: Grilled chicken, Steamed broccoli`);
+        
+        console.log(`Matched Food Attributes:`);
+        matchedAttributes.forEach(attr => {
+          console.log(`${attr.replace(/_/g, ' ')}: ${giverRow[attr]}`);
+        });
       } else {
         console.log('No Match Found.');
       }

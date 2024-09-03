@@ -59,7 +59,7 @@ class _MealStatusState extends State<MealStatus> {
     textAlign: TextAlign.center,
   );
   Text confirmtxt = const Text(
-    "Confirmed!",
+    "Confirm!",
     style: TextStyle(
         fontSize: 16, fontWeight: FontWeight.w900, color: Color(0xAAC63F43)),
     textAlign: TextAlign.center,
@@ -71,6 +71,7 @@ class _MealStatusState extends State<MealStatus> {
     void initState() {
     super.initState();
     data = ApiService().fetchData();
+    print(data);
   }
 
   @override

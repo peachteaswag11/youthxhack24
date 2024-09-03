@@ -1,4 +1,3 @@
-// app.js
 require('dotenv').config();
 const http = require('http');
 const axios = require('axios');
@@ -11,21 +10,20 @@ const server = http.createServer(async (req, res) => {
   const reqUrl = url.parse(req.url, true);
 
   if (reqUrl.pathname === '/login') {
-    // Redirect to SingPass authorization endpoint
+    // Redirect to authorization endpoint (placeholder URL)
     const queryParams = qs.stringify({
-      client_id: process.env.SINGPASS_CLIENT_ID,
+      client_id: process.env.AUTH_CLIENT_ID,
       response_type: 'code',
-      redirect_uri: process.env.SINGPASS_REDIRECT_URI,
-      state: 'random_state_string', // Use a random string for CSRF protection
-      scope: 'openid profile', // Scopes you need
+      redirect_uri: process.env.REDIRECT_URI,
+      state: 'random_state_string',
+      scope: 'openid profile',
     });
 
-    const authUrl = `${process.env.SINGPASS_AUTH_URL}?${queryParams}`;
+    const authUrl = `${process.env.AUTH_URL}?${queryParams}`;
     res.writeHead(302, { Location: authUrl });
     res.end();
 
   } else if (reqUrl.pathname === '/callback') {
-    // Handle the callback from SingPass
     const { code } = reqUrl.query;
 
     if (!code) {
@@ -35,19 +33,19 @@ const server = http.createServer(async (req, res) => {
     }
 
     try {
-      // Exchange the authorization code for an access token
-      const tokenResponse = await axios.post(process.env.SINGPASS_TOKEN_URL, qs.stringify({
+      // Exchange the authorization code for an access token (placeholder URL)
+      const tokenResponse = await axios.post(process.env.TOKEN_URL, qs.stringify({
         grant_type: 'authorization_code',
         code: code,
-        redirect_uri: process.env.SINGPASS_REDIRECT_URI,
-        client_id: process.env.SINGPASS_CLIENT_ID,
-        client_secret: process.env.SINGPASS_CLIENT_SECRET,
+        redirect_uri: process.env.REDIRECT_URI,
+        client_id: process.env.AUTH_CLIENT_ID,
+        client_secret: process.env.AUTH_CLIENT_SECRET,
       }));
 
       const accessToken = tokenResponse.data.access_token;
 
-      // Use the access token to fetch user information
-      const userInfoResponse = await axios.get(process.env.SINGPASS_USER_INFO_URL, {
+      // Use the access token to fetch user information (placeholder URL)
+      const userInfoResponse = await axios.get(process.env.USER_INFO_URL, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -59,15 +57,14 @@ const server = http.createServer(async (req, res) => {
       res.end(JSON.stringify(userInfo));
 
     } catch (error) {
-      console.error('Error during SingPass authentication:', error);
+      console.error('Error during authentication:', error);
       res.writeHead(500, { 'Content-Type': 'text/plain' });
       res.end('An error occurred during authentication');
     }
 
   } else {
-    // Default route
     res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('Welcome to the SingPass Node.js app! Go to /login to authenticate.');
+    res.end('Welcome to the authentication app! Go to /login to authenticate.');
   }
 });
 

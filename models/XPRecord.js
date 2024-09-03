@@ -1,16 +1,18 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/db');
+const sequelize = require('../db');
+const User = require('./User');
 
 const XPRecord = sequelize.define('XPRecord', {
-  userId: {
+  xpGained: {
     type: DataTypes.INTEGER,
-    references: {
-      model: 'Users',
-      key: 'id'
-    }
+    allowNull: false,
   },
-  xpPoints: DataTypes.INTEGER,
-  dateEarned: DataTypes.DATE,
+  date: {
+    type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW,
+  },
 });
+
+XPRecord.belongsTo(User);
 
 module.exports = XPRecord;

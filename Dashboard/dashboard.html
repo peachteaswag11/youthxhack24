@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="sidebar">
+            <h2>Dashboard</h2>
+            <button class="sidebar-button" onclick="showSection('overview')">Overview</button>
+            <button class="sidebar-button" onclick="showSection('food-sources')">Food Sources</button>
+            <button class="sidebar-button" onclick="showSection('beneficiaries')">Beneficiaries</button>
+            <button class="sidebar-button" onclick="showSection('volunteers')">Volunteers</button>
+            <button class="sidebar-button" onclick="showSection('leaderboard')">Leaderboard</button>
+            <button class="sidebar-button" onclick="showSection('efficiency')">Efficiency Metrics</button>
+        </div>
+        <div class="main-content">
+            <header class="header">
+                <div class="greeting">Food Donation Dashboard</div>
+                <input type="search" class="search" placeholder="Search...">
+            </header>
+
+            <section class="dashboard">
+                <!-- Overview -->
+                <div class="card overview section" id="overview">
+                    <h3>Overview</h3>
+                    <div class="overview-grid">
+                        <!-- Food Sources Summary -->
+                        <div class="overview-item">
+                            <h4>Food Sources</h4>
+                            <canvas id="foodSourcesOverviewChart"></canvas>
+                        </div>
+
+                        <!-- Beneficiaries Summary -->
+                        <div class="overview-item">
+                            <h4>Beneficiaries</h4>
+                            <canvas id="beneficiariesOverviewChart"></canvas>
+                        </div>
+
+                        <!-- Volunteers Summary -->
+                        <div class="overview-item">
+                            <h4>Volunteers</h4>
+                            <canvas id="volunteersOverviewChart"></canvas>
+                        </div>
+
+                        <!-- Efficiency Summary -->
+                        <div class="overview-item">
+                            <h4>Efficiency Metrics</h4>
+                            <canvas id="efficiencyOverviewChart"></canvas>
+                        </div>
+
+                        <!-- Leaderboard Summary -->
+                        <div class="overview-item">
+                            <h4>Top Contributors & Volunteers</h4>
+                            <ol id="overviewLeaderboard"></ol>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other sections remain the same... -->
+                <div class="card food-sources section" id="food-sources" style="display:none;">
+                    <h3>Food Sources Analysis</h3>
+                    <canvas id="foodSourcesChart"></canvas>
+                </div>
+
+                <div class="card beneficiaries section" id="beneficiaries" style="display:none;">
+                    <h3>Beneficiaries Analysis</h3>
+                    <canvas id="beneficiariesChart"></canvas>
+                </div>
+
+                <div class="card volunteers section" id="volunteers" style="display:none;">
+                    <h3>Volunteer Contributions</h3>
+                    <canvas id="volunteersChart"></canvas>
+                </div>
+
+                <div class="card leaderboard section" id="leaderboard" style="display:none;">
+                    <h3>Top Contributors & Volunteers</h3>
+                    <ol class="leaderboard-list" id="leaderboardList"></ol>
+                </div>
+
+                <div class="card efficiency section" id="efficiency" style="display:none;">
+                    <h3>Operational Efficiency</h3>
+                    <canvas id="efficiencyChart"></canvas>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="dashbaord.js"></script>
+</body>
+</html>
